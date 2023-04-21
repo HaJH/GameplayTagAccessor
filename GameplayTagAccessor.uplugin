@@ -1,0 +1,23 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "GameplayTagNativeAccessor",
+	"Description": "A plugin that automatically generates accessors for gameplay tags in the project.",
+	"Category": "Other",
+	"CreatedBy": "Jeonghyeon Ha",
+	"CreatedByURL": "https://github.com/HaJH/GameplayTagNativeAccessor",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"EngineVersion": "5.1.0",
+	"CanContainContent": false,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "GameplayTagAccessor",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		}
+	]
+}
