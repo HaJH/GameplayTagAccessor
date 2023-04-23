@@ -206,6 +206,28 @@ bool FGameplayTagAccessorModule::GenerateGameplayAccessors()
 			}
 			
 			header_file_content << "    /**\t\t" << TCHAR_TO_UTF8(*TagSource->SourceName.ToString()) << "\t\t**/ \n";
+
+			// Name
+			for(const auto& TagRow : AllTagTableRows)
+			{
+				// convert . to _ from TagString
+				FString TagRawString = TagRow.Tag.ToString();
+				FString TagString = TagRow.Tag.ToString();
+				TagString.ReplaceInline(TEXT("."), TEXT("_"), ESearchCase::CaseSensitive);
+				std::string tag_name = TCHAR_TO_UTF8(*TagString);
+				std::string tag_raw_name = TCHAR_TO_UTF8(*TagRawString);
+				std::string tag_comment = TCHAR_TO_UTF8(*TagRow.DevComment);
+
+				std::string name_prefix = TCHAR_TO_UTF8(*UGameplayTagAccessorSettings::Get()->NamePrefix);
+				
+				if(TagRow.DevComment.IsEmpty() == false)
+				{
+					header_file_content << "    /* " << tag_comment << "*/ \n";
+				}
+				header_file_content << "    inline static FName " << name_prefix << tag_name << " = TEXT(\"" << tag_raw_name << "\");" << "\n";
+			}
+
+			// Tag Getter
 			for(const auto& TagRow : AllTagTableRows)
 			{
 				// convert . to _ from TagString
@@ -218,43 +240,14 @@ bool FGameplayTagAccessorModule::GenerateGameplayAccessors()
 
 				std::string name_prefix = TCHAR_TO_UTF8(*UGameplayTagAccessorSettings::Get()->NamePrefix);
 				std::string tag_prefix = TCHAR_TO_UTF8(*UGameplayTagAccessorSettings::Get()->TagPrefix);
-
-				if(UGameplayTagAccessorSettings::Get()->bUseNameAccessor && !UGameplayTagAccessorSettings::Get()->bAlternativeSortingForName)
-				{
-					if(TagRow.DevComment.IsEmpty() == false)
-					{
-						header_file_content << "    /* " << tag_comment << "*/ \n";
-					}
-					header_file_content << "    inline FName " << name_prefix << tag_name << " = TEXT(\"" << tag_raw_name << "\");" << "\n";
-				}
+				
 				if(TagRow.DevComment.IsEmpty() == false)
 				{
 					header_file_content << "    /* " << tag_comment << "*/ \n";
 				}
-				header_file_content << "    inline FGameplayTag " << tag_prefix << tag_name << " = FGameplayTag::RequestGameplayTag(\"" <<
-					tag_raw_name << "\", true);" << "\n";
+				header_file_content << "    inline static FGameplayTag " << tag_prefix << tag_name << "() { return FGameplayTag::RequestGameplayTag(" << name_prefix << tag_name << ", false); }" << "\n";
 			}
-			if(UGameplayTagAccessorSettings::Get()->bUseNameAccessor && UGameplayTagAccessorSettings::Get()->bAlternativeSortingForName)
-			{
-				for(const auto& TagRow : AllTagTableRows)
-				{
-					// convert . to _ from TagString
-					FString TagRawString = TagRow.Tag.ToString();
-					FString TagString = TagRow.Tag.ToString();
-					TagString.ReplaceInline(TEXT("."), TEXT("_"), ESearchCase::CaseSensitive);
-					std::string tag_name = TCHAR_TO_UTF8(*TagString);
-					std::string tag_raw_name = TCHAR_TO_UTF8(*TagRawString);
-					std::string tag_comment = TCHAR_TO_UTF8(*TagRow.DevComment);
 
-					std::string name_prefix = TCHAR_TO_UTF8(*UGameplayTagAccessorSettings::Get()->NamePrefix);
-					
-					if(TagRow.DevComment.IsEmpty() == false)
-					{
-						header_file_content << "    /* " << tag_comment << "*/ \n";
-					}
-					header_file_content << "    inline FName " << name_prefix << tag_name << " = TEXT(\"" << tag_raw_name << "\");" << "\n";
-				}
-			}
 			header_file_content << "\n";
 		}
 		// ~Body

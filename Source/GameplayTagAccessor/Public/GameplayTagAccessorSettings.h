@@ -38,12 +38,8 @@ public:
 	
 	UPROPERTY(config, EditAnywhere, BlueprintReadOnly, Category = "GameplayTagAccessor|Accessor")
 	FString TagPrefix = "Tag_";
-	UPROPERTY(config, EditAnywhere, BlueprintReadOnly, Category = "GameplayTagAccessor|Accessor", meta=(ToolTip="Create an FName variable corresponding to the tag."))
-	bool bUseNameAccessor = true;
-	UPROPERTY(config, EditAnywhere, BlueprintReadOnly, Category = "GameplayTagAccessor|Accessor", meta = (EditCondition = "bUseNameAccessor"))
+	UPROPERTY(config, EditAnywhere, BlueprintReadOnly, Category = "GameplayTagAccessor|Accessor")
 	FString NamePrefix = "Name_";
-	UPROPERTY(config, EditAnywhere, BlueprintReadOnly, Category = "GameplayTagAccessor|Accessor", meta = (EditCondition = "bUseNameAccessor", ToolTip="Tags are collected together with tags, and names are collected together with names."))
-	bool bAlternativeSortingForName = false;
 	
 	UPROPERTY(config, EditAnywhere, BlueprintReadOnly, Category = "GameplayTagAccessor|Automation", meta = (ToolTip="Automatically generate tag accessors when the project starts up."))
 	bool bUseAutomaticGenerationWhenStartUp = false;

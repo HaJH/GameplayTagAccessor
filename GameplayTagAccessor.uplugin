@@ -7,9 +7,6 @@
 	"Category": "Other",
 	"CreatedBy": "Jeonghyeon Ha",
 	"CreatedByURL": "https://github.com/HaJH/GameplayTagNativeAccessor",
-	"DocsURL": "",
-	"MarketplaceURL": "",
-	"SupportURL": "",
 	"EngineVersion": "5.1.0",
 	"CanContainContent": false,
 	"Installed": true,
@@ -19,5 +16,10 @@
 			"Type": "Editor",
 			"LoadingPhase": "Default"
 		}
-	]
+	],
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false
 }
