@@ -7,7 +7,6 @@
 	"Category": "Other",
 	"CreatedBy": "Jeonghyeon Ha",
 	"CreatedByURL": "https://github.com/HaJH/GameplayTagNativeAccessor",
-	"EngineVersion": "5.1.0",
 	"CanContainContent": false,
 	"Installed": true,
 	"Modules": [

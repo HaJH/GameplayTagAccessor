@@ -14,6 +14,8 @@
 
 #include "GameplayTagsManager.h"
 #include "GameplayTagsSettings.h"
+#include "Framework/Notifications/NotificationManager.h"
+#include "Widgets/Notifications/SNotificationList.h"
 
 static const FName GameplayTagAccessorTabName("GameplayTagAccessor");
 
@@ -32,7 +34,7 @@ void FGameplayTagAccessorModule::StartupModule()
 	PluginCommands = MakeShareable(new FUICommandList);
 
 	PluginCommands->MapAction(
-		FGameplayTagAccessorCommands::Get().PluginAction,
+		FGameplayTagAccessorCommands::Get().GameplayTagAccessorCreate,
 		FExecuteAction::CreateRaw(this, &FGameplayTagAccessorModule::PluginButtonClicked),
 		FCanExecuteAction());
 
@@ -105,7 +107,12 @@ void FGameplayTagAccessorModule::PluginButtonClicked()
 			FText::FromString(UGameplayTagAccessorSettings::Get()->FileName),
 			FText::FromString(TagSources)
 		);
-		FMessageDialog::Open(EAppMsgType::Ok, DialogText);
+		
+		FNotificationInfo Info(DialogText);
+		Info.ExpireDuration = 3.0f;
+		Info.bUseSuccessFailIcons = true;
+		TSharedPtr<SNotificationItem> Notification = FSlateNotificationManager::Get().AddNotification(Info);
+		Notification->SetCompletionState(SNotificationItem::CS_Success);
 	}
 	else
 	{
@@ -116,7 +123,12 @@ void FGameplayTagAccessorModule::PluginButtonClicked()
 			FText::FromString(UGameplayTagAccessorSettings::Get()->FileName),
 			FText::FromString(TagSources)
 		);
-		FMessageDialog::Open(EAppMsgType::Ok, DialogText);
+		
+		FNotificationInfo Info(DialogText);
+		Info.ExpireDuration = 3.0f;
+		Info.bUseSuccessFailIcons = true;
+		TSharedPtr<SNotificationItem> Notification = FSlateNotificationManager::Get().AddNotification(Info);
+		Notification->SetCompletionState(SNotificationItem::CS_Fail);
 	}
 }
 
@@ -302,7 +314,7 @@ void FGameplayTagAccessorModule::RegisterMenus()
 		UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("LevelEditor.MainMenu.Window");
 		{
 			FToolMenuSection& Section = Menu->FindOrAddSection("WindowLayout");
-			Section.AddMenuEntryWithCommandList(FGameplayTagAccessorCommands::Get().PluginAction, PluginCommands);
+			Section.AddMenuEntryWithCommandList(FGameplayTagAccessorCommands::Get().GameplayTagAccessorCreate, PluginCommands);
 		}
 	}
 
@@ -312,7 +324,7 @@ void FGameplayTagAccessorModule::RegisterMenus()
 			FToolMenuSection& Section = ToolbarMenu->FindOrAddSection("PluginTools");
 			{
 				FToolMenuEntry& Entry = Section.AddEntry(
-					FToolMenuEntry::InitToolBarButton(FGameplayTagAccessorCommands::Get().PluginAction));
+					FToolMenuEntry::InitToolBarButton(FGameplayTagAccessorCommands::Get().GameplayTagAccessorCreate));
 				Entry.SetCommandList(PluginCommands);
 			}
 		}

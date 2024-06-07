@@ -42,7 +42,7 @@ TSharedRef< FSlateStyleSet > FGameplayTagAccessorStyle::Create()
 	TSharedRef< FSlateStyleSet > Style = MakeShareable(new FSlateStyleSet("GameplayTagAccessorStyle"));
 	Style->SetContentRoot(IPluginManager::Get().FindPlugin("GameplayTagAccessor")->GetBaseDir() / TEXT("Resources"));
 
-	Style->Set("GameplayTagAccessor.PluginAction", new IMAGE_BRUSH(TEXT("icon128"), Icon20x20));
+	Style->Set("GameplayTagAccessor.GameplayTagAccessorCreate", new IMAGE_BRUSH(TEXT("icon128"), Icon20x20));
 	return Style;
 }
 

@@ -6,7 +6,7 @@
 
 void FGameplayTagAccessorCommands::RegisterCommands()
 {
-	UI_COMMAND(PluginAction, "GameplayTagAccessor", "Generate GameplayTag Accessors", EUserInterfaceActionType::Button, FInputChord());
+	UI_COMMAND(GameplayTagAccessorCreate, "GameplayTagAccessor", "Generate GameplayTag Accessors", EUserInterfaceActionType::Button, FInputChord());
 }
 
 #undef LOCTEXT_NAMESPACE
