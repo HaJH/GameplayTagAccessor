@@ -1,3 +1,5 @@
+// Copyright 2024 Jeonghyeon Ha. All Rights Reserved.
+
 using UnrealBuildTool;
 
 public class GameplayTagAccessor : ModuleRules
