@@ -5,11 +5,11 @@ A unreal engine plugin that automatically generates accessors for gameplay tags 
 ## Overview
 GameplayTag Native Accessor is a code plugin that automatically generates C++ variables corresponding to each tag by reading the gameplay tags used in a project. This plugin simplifies code access to gameplay tags for game developers and helps them use the gameplay tag system more efficiently.
 
-## Epic Marketplace
-I've added some additional features to this plugin and released a version with a nice UI on the Epic Marketplace.
-If you want advanced features or want to buy me a cup of coffee, please purchase the code plugin below.
+#### Epic Marketplace : [Link](https://www.unrealengine.com/marketplace/product/e6331cf54ae94d6d8786ae5442daacd0)
 
-https://www.unrealengine.com/marketplace/product/aceb8c99bde44f9bb20f1a94d3530c57
+#### GameplayTag Utility (Advanced version of this plugin) : [Link][gameplaytagutility]
+[gameplaytagutility]: https://www.unrealengine.com/marketplace/product/aceb8c99bde44f9bb20f1a94d3530c57 "I've added some additional features to this plugin and released a version with a nice UI on the Epic Marketplace. If you want advanced features or want to buy me a cup of coffee, please purchase the code plugin."
+
 
 ## How to use
 1. To execute the plugin, 
