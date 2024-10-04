@@ -9,7 +9,7 @@
 	"CreatedByURL": "https://github.com/HaJH/GameplayTagAccessor",
 	"DocsURL": "https://github.com/HaJH/GameplayTagAccessor/blob/main/README.md",
 	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/e6331cf54ae94d6d8786ae5442daacd0",
-	"EngineVersion": "5.4.0",
+	"EngineVersion": "5.5.0",
 	"CanContainContent": false,
 	"Installed": true,
 	"Modules": [
